@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-svelte="svelte-1mqpxck">
+    <style data-svelte="svelte-1mqpxck">
+        @import url("https://unpkg.com/@primo-app/primo@1.3.64/reset.css");
+
+        /* CSS Variables */
+        /* define the theme values for your site */
+        html {
+
+            /* Colors */
+            --color-accent: #473198;
+            --color-shade: #fdf0e6;
+            --color-inverted: #FFF;
+
+            /* Default property values */
+            --background: var(--color-inverted);
+            --color: #111;
+            --padding-top: 6rem;
+            --padding: var(--padding-top) 2rem;
+            --border: 1px solid var(--color-shade);
+            --box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+            --border-radius: 8px;
+            --max-width: 1100px;
+            --border-color: var(--color-shade);
+            --transition-time: 0.1s;
+            --transition: var(--transition-time) color,
+                var(--transition-time) background-color,
+                var(--transition-time) border-color,
+                var(--transition-time) text-decoration-color,
+                var(--transition-time) box-shadow, var(--transtion-time) transform;
+
+        }
+
+        .primo-page {
+            font-family: system-ui, sans-serif;
+            color: var(--color);
+            font-size: 1rem;
+            background: var(--background);
+        }
+
+        .primo-section .primo-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--padding);
+        }
+
+        .primo-section .primo-content img {
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+        }
+
+        .primo-section .primo-content p {
+            padding: 0.25rem 0;
+            line-height: 1.5;
+        }
+
+        .primo-section .primo-content a {
+            text-decoration: underline;
+        }
+
+        .primo-section .primo-content h1 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .primo-section .primo-content h2 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .primo-section .primo-content h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .primo-section .primo-content ul {
+            list-style: disc;
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .primo-section .primo-content ol {
+            list-style: decimal;
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .primo-section .primo-content blockquote {
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+        }
+
+        .section-container {
+            max-width: var(--max-width, 1200px);
+            margin: 0 auto;
+            padding: var(--padding);
+        }
+
+        .body {
+            font-size: var(--body-font-size);
+        }
+
+        .heading {
+            font-size: var(--heading-font-size, 49px);
+            line-height: var(--heading-line-height, 1);
+        }
+
+        .button {
+            color: var(--color-accent);
+            background: var(--color-inverted);
+            border: 2px solid transparent;
+            padding: 0.875rem 1.5rem;
+            transition: var(--transition);
+        }
+
+        .button.inverted {
+            background: var(--color-inverted);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .primo-section.has-content {
+            color: var(--background);
+            background: var(--color-accent);
+        }
+
+        .primo-section .primo-content h1 {
+            font-size: 4rem;
+        }
+
+        .primo-section .primo-content h2 {
+            font-size: 2.25rem;
+        }
+
+        .primo-section .primo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .primo-section .primo-content h1 {
+            grid-column: 1 / span 2;
+        }
+
+        .primo-section .primo-content h2 {
+            grid-column: 1;
+        }
+
+        .primo-section .primo-content h2+p {
+            font-size: 2.25rem;
+        }
+
+        .primo-section .primo-content h2~* {
+            grid-column: 2;
+        }
+    </style>
+    <script async>
+        let data = {}
+        fetch('/en.json').then(res => res.json()).then(res => {
+            data = res
+        })
+    </script>
+</head>
+
+<body class="primo-page">
+
+    <style>
+        @import url("https://unpkg.com/modern-normalize@1.1.0/modern-normalize.css");
+
+        header.svelte-w3oef5.svelte-w3oef5 {
+            background: var(--color-accent);
+            color: var(--background);
+            --max-width: none
+        }
+
+        .section-container.svelte-w3oef5.svelte-w3oef5 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            place-items: center flex-start;
+            padding-top: 1.5rem;
+            padding-bottom: 4rem
+        }
+
+        nav.svelte-w3oef5.svelte-w3oef5 {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem
+        }
+
+        nav.svelte-w3oef5 a.link.svelte-w3oef5 {
+            display: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.1s
+        }
+
+        nav.svelte-w3oef5 a.link.svelte-w3oef5:hover {
+            border-color: var(--color-accent, #154bf4)
+        }
+
+        nav.svelte-w3oef5 button#close.svelte-w3oef5 {
+            display: none
+        }
+
+        .logo.svelte-w3oef5.svelte-w3oef5 {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+            justify-self: center
+        }
+
+        .call-to-action.svelte-w3oef5.svelte-w3oef5 {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: auto
+        }
+
+        .call-to-action.svelte-w3oef5 button#open.svelte-w3oef5 {
+            color: var(--color-background);
+            margin-left: auto
+        }
+
+        .call-to-action.svelte-w3oef5 a.svelte-w3oef5 {
+            display: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.1s
+        }
+
+        .call-to-action.svelte-w3oef5 a.svelte-w3oef5:hover {
+            border-color: var(--color-accent, #154bf4)
+        }
+
+        nav#mobile-nav.svelte-w3oef5.svelte-w3oef5 {
+            position: absolute;
+            flex-direction: column;
+            text-align: center;
+            background-color: var(--background-color, white);
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            left: 0.5rem;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 2rem
+        }
+
+        nav#mobile-nav.svelte-w3oef5 a.logo.svelte-w3oef5 {
+            margin-right: 0
+        }
+
+        nav#mobile-nav.svelte-w3oef5 a.link.svelte-w3oef5 {
+            display: block
+        }
+
+        nav#mobile-nav.svelte-w3oef5 hr.svelte-w3oef5 {
+            width: 100%
+        }
+
+        nav#mobile-nav.svelte-w3oef5 .button.svelte-w3oef5 {
+            width: 100%;
+            justify-content: center
+        }
+
+        nav#mobile-nav.svelte-w3oef5 button#close.svelte-w3oef5 {
+            display: block;
+            position: absolute;
+            right: 1rem;
+            top: 1rem
+        }
+
+        nav#mobile-nav.svelte-w3oef5 button#close svg.svelte-w3oef5 {
+            color: var(--color-accent, #154bf4);
+            width: 1.5rem;
+            height: 1.5rem
+        }
+
+        @media(min-width: 600px) {
+
+            #open.svelte-w3oef5.svelte-w3oef5,
+            #mobile-nav.svelte-w3oef5.svelte-w3oef5 {
+                display: none
+            }
+
+            nav.svelte-w3oef5 a.link.svelte-w3oef5 {
+                display: inline-block
+            }
+
+            .call-to-action.svelte-w3oef5 a.svelte-w3oef5 {
+                display: inline-block
+            }
+        }
+    </style>
+    <div class="primo-section has-component" id="ikshv">
+        <div class="primo-component">
+            <header class="svelte-w3oef5">
+                <div class="section-container svelte-w3oef5">
+                    <nav class="svelte-w3oef5"><a href="/" class="link svelte-w3oef5">Blog</a><a href="/" class="link svelte-w3oef5">Speaking Events</a></nav>
+                    <a href="/" class="logo svelte-w3oef5">Jamal</a>
+                    <div class="call-to-action svelte-w3oef5"><button id="open" aria-label="Open mobile navigation" class="svelte-w3oef5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.4643 17.0213H0.535714C0.239866 17.0213 0 17.3071 0 17.6596V19.3617C0 19.7142 0.239866 20 0.535714 20H19.4643C19.7601 20 20 19.7142 20 19.3617V17.6596C20 17.3071 19.7601 17.0213 19.4643 17.0213ZM19.4643 8.51064H0.535714C0.239866 8.51064 0 8.79644 0 9.14894V10.8511C0 11.2036 0.239866 11.4894 0.535714 11.4894H19.4643C19.7601 11.4894 20 11.2036 20 10.8511V9.14894C20 8.79644 19.7601 8.51064 19.4643 8.51064ZM19.4643 0H0.535714C0.239866 0 0 0.285797 0 0.638296V2.34042C0 2.69292 0.239866 2.97872 0.535714 2.97872H19.4643C19.7601 2.97872 20 2.69292 20 2.34042V0.638296C20 0.285797 19.7601 0 19.4643 0Z" fill="currentColor"></path>
+                            </svg></button>
+                        <a href="/" class="svelte-w3oef5 button">Contact Me</a>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+
+    <div class="primo-section has-content" id="fcnrb">
+        <div class="primo-content">
+            <h1>I’m a <em>Developer</em> and <em>Educator </em>who is interested in all things web.</h1>
+        </div>
+    </div>
+
+
+    <div class="primo-section has-content" id="nsgbc">
+        <div class="primo-content">
+            <h2>About Me</h2>
+            <p>Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat. Tortor at risus viverra adipiscing at in. </p>
+        </div>
+    </div>
+
+    <style>
+        section.inverted.svelte-cphmmi {
+            color: var(--background);
+            background: var(--color)
+        }
+
+        section.accent.svelte-cphmmi {
+            color: var(--background);
+            background: var(--color-accent)
+        }
+
+        .section-container.svelte-cphmmi {
+            display: grid;
+            gap: 2rem
+        }
+
+        ul.svelte-cphmmi {
+            display: grid;
+            gap: 1rem
+        }
+
+        @media(min-width: 500px) {
+            ul.svelte-cphmmi {
+                grid-template-columns: 1fr 1fr;
+                -moz-column-gap: 4rem;
+                column-gap: 4rem
+            }
+        }
+
+        @media(min-width: 750px) {
+            .section-container.svelte-cphmmi {
+                display: grid;
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+    <div class="primo-section has-component" id="mpmpu">
+        <div class="primo-component">
+            <section class="accent svelte-cphmmi">
+                <div class="section-container svelte-cphmmi">
+                    <h2 class="heading">Specialties</h2>
+                    <ul class="svelte-cphmmi">
+                        <li>UX Research</li>
+                        <li>Strategic Planning</li>
+                        <li>Writing &amp; Editing</li>
+                        <li>Front-End Dev</li>
+                        <li>User Testing</li>
+                        <li>User Interviews</li>
+                        <li>Analytics &amp; Data</li>
+                        <li>Programming</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <style>
+        .section-container.svelte-sp5cly {
+            display: grid;
+            gap: 2rem;
+            padding-top: var(--padding-top);
+            padding-bottom: var(--padding-top)
+        }
+
+        ul.svelte-sp5cly {
+            display: grid;
+            gap: 1rem
+        }
+
+        li.svelte-sp5cly {
+            display: grid;
+            gap: 0.5rem;
+            line-height: 1.6;
+            place-content: flex-start
+        }
+
+        .title.svelte-sp5cly {
+            font-weight: 600;
+            font-size: 1.125rem
+        }
+
+        .date.svelte-sp5cly {
+            font-size: 0.75rem
+        }
+
+        @media(min-width: 700px) {
+            ul.svelte-sp5cly {
+                -moz-column-gap: 4rem;
+                column-gap: 4rem;
+                row-gap: 4rem
+            }
+        }
+
+        @media(min-width: 1000px) {
+            .section-container.svelte-sp5cly {
+                display: grid;
+                grid-template-columns: 1fr 1fr
+            }
+
+            ul.svelte-sp5cly {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+    <div class="primo-section has-component" id="ijbib">
+        <div class="primo-component">
+            <section>
+                <div class="section-container svelte-sp5cly">
+                    <h2 class="heading">Blog</h2>
+                    <ul class="svelte-sp5cly">
+                        <li class="svelte-sp5cly">
+                            <h3 class="title svelte-sp5cly">Lacus viverra vitae congue eu</h3>
+                            <div class="description">
+                                <!-- HTML_TAG_START -->
+                                <p>Ut faucibus pulvinar elementum integer enim neque volutpat ac. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Euismod nisi porta lorem mollis aliquam ut porttitor leo a.</p><!-- HTML_TAG_END -->
+                            </div>
+                            <span class="date svelte-sp5cly">May 17, 2019</span>
+                        </li>
+                        <li class="svelte-sp5cly">
+                            <h3 class="title svelte-sp5cly">Ut faucibus pulvinar </h3>
+                            <div class="description">
+                                <!-- HTML_TAG_START -->
+                                <p>Tortor at risus viverra adipiscing at in. Nisl condimentum id venenatis a condimentum. Sit amet risus nullam eget felis eget nunc. Nam at lectus urna duis convallis convallis. Lorem dolor sed viverra ipsum.</p><!-- HTML_TAG_END -->
+                            </div>
+                            <span class="date svelte-sp5cly">May 17, 2019</span>
+                        </li>
+                        <li class="svelte-sp5cly">
+                            <h3 class="title svelte-sp5cly">Morbi tincidunt augue interdum velit euismod </h3>
+                            <div class="description">
+                                <!-- HTML_TAG_START -->
+                                <p>Neque gravida in fermentum et. Mauris augue neque gravida in. Vestibulum sed arcu non odio euismod lacinia at quis. Ac odio tempor orci dapibus ultrices.</p><!-- HTML_TAG_END -->
+                            </div>
+                            <span class="date svelte-sp5cly">May 17, 2019</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <style>
+        .section-container.svelte-1jigg2z {
+            display: grid;
+            gap: 2rem
+        }
+
+        ul.svelte-1jigg2z {
+            display: grid;
+            gap: 1rem
+        }
+
+        li.svelte-1jigg2z {
+            display: grid;
+            gap: 0.5rem;
+            line-height: 1.6
+        }
+
+        .title.svelte-1jigg2z {
+            font-weight: 500;
+            font-size: 1.125rem
+        }
+
+        .details.svelte-1jigg2z {
+            display: grid;
+            gap: 0.25rem
+        }
+
+        @media(min-width: 700px) {
+            ul.svelte-1jigg2z {
+                -moz-column-gap: 4rem;
+                column-gap: 4rem;
+                row-gap: 4rem
+            }
+        }
+
+        @media(min-width: 1000px) {
+            .section-container.svelte-1jigg2z {
+                display: grid;
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+    <div class="primo-section has-component" id="ggfat">
+        <div class="primo-component">
+            <section>
+                <div class="section-container svelte-1jigg2z">
+                    <h2 class="heading">Events</h2>
+                    <ul class="svelte-1jigg2z">
+                        <li class="svelte-1jigg2z">
+                            <h3 class="title svelte-1jigg2z">Lacus viverra</h3>
+                            <div class="details svelte-1jigg2z"><span class="location">New York, NY</span>
+                                <span class="date svelte-1jigg2z">June 25th</span>
+                                <span class="time">2pm</span>
+                            </div>
+                        </li>
+                        <li class="svelte-1jigg2z">
+                            <h3 class="title svelte-1jigg2z">Vitae justo eget</h3>
+                            <div class="details svelte-1jigg2z"><span class="location">New York, NY</span>
+                                <span class="date svelte-1jigg2z">July 14th</span>
+                                <span class="time">8pm</span>
+                            </div>
+                        </li>
+                        <li class="svelte-1jigg2z">
+                            <h3 class="title svelte-1jigg2z">Sit amet risus</h3>
+                            <div class="details svelte-1jigg2z"><span class="location">New York, NY</span>
+                                <span class="date svelte-1jigg2z">July 29th</span>
+                                <span class="time">5pm</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <style>
+        footer.svelte-ofif72.svelte-ofif72 {
+            border-top: 1px solid var(--border-color, #E5E5E7)
+        }
+
+        .section-container.svelte-ofif72.svelte-ofif72 {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem
+        }
+
+        .primo.svelte-ofif72.svelte-ofif72 {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75rem
+        }
+
+        .primo.svelte-ofif72 a.svelte-ofif72 {
+            text-decoration: underline;
+            color: rgb(248, 68, 73)
+        }
+
+        ul.svelte-ofif72.svelte-ofif72 {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+            list-style: none
+        }
+
+        ul.svelte-ofif72 a.svelte-ofif72 {
+            transition: var(--transition)
+        }
+
+        ul.svelte-ofif72 a.svelte-ofif72:hover {
+            color: var(--color-accent)
+        }
+
+        @media(min-width: 600px) {
+            ul.svelte-ofif72.svelte-ofif72 {
+                font-size: 1.25rem
+            }
+        }
+    </style>
+    <div class="primo-section has-component" id="blalq">
+        <div class="primo-component">
+            <footer class="svelte-ofif72">
+                <div class="section-container svelte-ofif72">
+                    <ul class="svelte-ofif72">
+                        <li><a href="/" aria-label="mdi:twitter" class="svelte-ofif72"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify iconify--mdi">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z" /><!-- HTML_TAG_END -->
+                                </svg></a>
+                        </li>
+                        <li><a href="/" aria-label="mdi:twitter" class="svelte-ofif72"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify iconify--mdi">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23Z" /><!-- HTML_TAG_END -->
+                                </svg></a>
+                        </li>
+                    </ul>
+                    <span class="primo svelte-ofif72"><a href="https://primo.so" class="svelte-ofif72">primo</a> powered</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+    <script type="module">
+        import App from '/_modules/ictfl.js';
+        new App({
+            target: document.querySelector('#ikshv'),
+            hydrate: true,
+            props: {
+                ...data,
+                ...data['index'],
+                ...data['index']['ikshv']
+            }
+        });
+    </script>
+    <script type="module">
+        import App from '/_modules/rzecx.js';
+        new App({
+            target: document.querySelector('#blalq'),
+            hydrate: true,
+            props: {
+                ...data,
+                ...data['index'],
+                ...data['index']['blalq']
+            }
+        });
+    </script>
+</body>
+
+</html>
